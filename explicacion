@@ -1,0 +1,66 @@
+Explicación de Redes Docker
+
+Docker utiliza redes virtuales para permitir la comunicación entre contenedores.
+
+En este proyecto se creó la red:
+
+networks:
+  red_interna:
+
+Esta red permite que:
+
+El contenedor Apache/PHP se comunique con LDAP.
+Los servicios estén aislados del sistema operativo principal.
+Los contenedores puedan encontrarse usando el nombre del servicio.
+
+Por ejemplo:
+
+$ldapconn = ldap_connect("ldap://ldap");
+
+Aquí ldap corresponde al nombre del servicio definido en Docker Compose.
+
+Ventajas de las redes Docker
+Aislamiento de servicios.
+Mayor seguridad.
+Comunicación interna automática.
+Facilidad de administración.
+Portabilidad del entorno.
+Ventajas frente al entorno local
+1. Aislamiento
+
+Cada servicio funciona en su propio contenedor sin afectar el sistema operativo principal.
+
+2. Portabilidad
+
+El proyecto puede ejecutarse en cualquier equipo que tenga Docker instalado.
+
+3. Facilidad de despliegue
+
+Con un solo comando:
+
+docker compose up -d
+
+se inicia todo el entorno automáticamente.
+
+4. Compatibilidad
+
+WSL permite usar herramientas Linux directamente en Windows, mejorando la compatibilidad con Docker.
+
+5. Escalabilidad
+
+Es posible agregar nuevos servicios fácilmente como:
+
+MySQL
+phpMyAdmin
+Nginx
+Node.js
+6. Mantenimiento sencillo
+
+Los contenedores pueden reiniciarse, eliminarse o reconstruirse sin afectar otros servicios.
+
+Conclusiones
+
+La integración de Docker con WSL facilita la creación de entornos de desarrollo modernos, aislados y portables.
+El uso de OpenLDAP dentro de contenedores permite administrar autenticación centralizada de manera eficiente, mientras que Docker Compose simplifica la administración de múltiples servicios.
+
+Además, el uso de redes Docker mejora la comunicación entre contenedores y aumenta la seguridad del entorno de trabajo.
